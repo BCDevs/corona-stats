@@ -25,10 +25,6 @@ function searchByCountry() {
     type: "get",
     data: {},
     success: function (response) {
-    if(typeof response.country=='undefined'){
-                getCountries();
-         }
-         else{
         let sectionsContent = `<table class="table table-striped table-bordered" >
               <tr>
             <th>Country</th>
@@ -53,7 +49,6 @@ function searchByCountry() {
             </table>`
             console.log(response.country)
           document.querySelector('#searchResponse').innerHTML = sectionsContent;
-        }
     },
     error: function (xhr) {
       alert('Oops!!! No search Results or we might messed up!!')
