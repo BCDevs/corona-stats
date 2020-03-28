@@ -21,14 +21,14 @@ function getStats() {
 function searchByCountry() {
   let query = document.getElementById("searchQuery").value;
   $.ajax({
-    url:`https://corona.lmao.ninja/${query}`,
+    url:`https://corona.lmao.ninja/countries/${query}`,
     type: "get",
     data: {},
     success: function (response) {
-         if(response.message!='undefined'){
-          document.querySelector('#getCountries').innerHTML = response.message;
-          return;
-         }else{
+    if(typeof response.country=='undefined'){
+                getCountries();
+         }
+         else{
         let sectionsContent = `<table class="table table-striped table-bordered" >
               <tr>
             <th>Country</th>
@@ -51,11 +51,12 @@ function searchByCountry() {
             <td>${response.critical}</td>
             </tr>
             </table>`
-          document.querySelector('#getCountries').innerHTML = sectionsContent;
+            console.log(response.country)
+          document.querySelector('#searchResponse').innerHTML = sectionsContent;
         }
     },
     error: function (xhr) {
-      alert('Oops!!! Something went terribly wrong. We have sent out a higly trained team of monkeys to handle this situation.')
+      alert('Oops!!! No search Results or we might messed up!!')
     }
   });
 }
