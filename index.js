@@ -18,6 +18,47 @@ function getStats() {
     }
   });
 }
+function searchByCountry() {
+  let query = document.getElementById("searchQuery").value;
+  $.ajax({
+    url:`https://corona.lmao.ninja/${query}`,
+    type: "get",
+    data: {},
+    success: function (response) {
+         if(response.message!='undefined'){
+          document.querySelector('#getCountries').innerHTML = response.message;
+          return;
+         }else{
+        let sectionsContent = `<table class="table table-striped table-bordered" >
+              <tr>
+            <th>Country</th>
+            <th>Cases</th>
+            <th>Deaths</th>
+            <th>Recovered</th> 
+            <th>Today Reported</th>
+            <th>Today Deaths</th>
+            <th>Active</th>
+            <th>Critical</th>
+            </tr>
+            <tr>
+            <td>${response.country}</td>
+            <td>${response.cases}</td>
+            <td>${response.deaths}</td>
+            <td>${response.recovered}</td>
+            <td>${response.todayCases}</td>
+            <td>${response.todayDeaths}</td>
+            <td>${response.active}</td>
+            <td>${response.critical}</td>
+            </tr>
+            </table>`
+          document.querySelector('#getCountries').innerHTML = sectionsContent;
+        }
+    },
+    error: function (xhr) {
+      alert('Oops!!! Something went terribly wrong. We have sent out a higly trained team of monkeys to handle this situation.')
+    }
+  });
+}
 function getCountries() {
   $.ajax({
     url:'https://corona.lmao.ninja/countries',
