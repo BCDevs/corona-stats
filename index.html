@@ -4,7 +4,7 @@
   <title>Corona Stats-Live</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Corona Live Statistics Dashboard">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -62,10 +62,11 @@ td,th {
     <ul class="navbar-nav mr-auto">
       
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input id="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search By Country." aria-label="Search">
-      <button class="btn btn-info my-2 my-sm-0" onclick="searchByCountry()>Search</button>
-    </form>
+    <form class="form-inline my-2 my-lg-0" id="searchForm">
+      <input id="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search By Country.." aria-label="Search">
+      </form>
+      <button class="btn btn-info my-2 my-sm-0" id="searchButton" disabled onclick="searchByCountry()">Search</button>
+    
   </div>
 </nav>
 </br>
@@ -130,8 +131,8 @@ td,th {
 </div>
 </br>
 <!-- class="float-lg-right" -->
-<div class="col-sm-6" style="padding: 20px">
-  <h4 id=search>COUNTRIES AFFECTED</h4>
+<div class="col-sm-6" style="padding: 20px; overflow-x:scroll;" id="searchResponse">
+  <h4>COUNTRIES AFFECTED</h4>
   <div style="padding: 15px;width: 100%;height: 8%;overflow: scroll;border: 1px solid #ccc;">
     <span id="getCountries" onclick="getCountries()"></span>
   </div>
@@ -146,14 +147,28 @@ td,th {
 </body>
 <script type="text/javascript">
   (function() {
+    $('#searchForm > input').keyup(function() {
+                 let data = false;
+                 $('#searchForm > input').each(function() {
+                     if ($(this).val() == '') {
+                         data = true;
+                     }
+                 });
+         
+            if (data) {
+              $('#searchButton').attr('disabled', 'disabled');
+              } else {
+              $('#searchButton').removeAttr('disabled');
+                 }
+    });
   setInterval(function(){
     $('#getStats').click();
     $('#getCountries').click(); 
        }, 30000);
    })()
-</script>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>
