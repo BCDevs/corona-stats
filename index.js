@@ -25,7 +25,7 @@ function searchByCountry() {
     type: "get",
     data: {},
     success: function (response) {
-         if(typeof response.message != undefined) {
+         if(typeof response.message != 'undefined') {
            document.querySelector('#searchResponse').innerHTML=response.message;
             return;
           }
