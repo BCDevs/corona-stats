@@ -64,7 +64,7 @@ function getCountries() {
     type: "get",
     data: {},
     success: function (response) {
-      let deathsToday = 0;
+      //let deathsToday = 0;
       let sectionsContent = `<table class="table table-striped table-bordered" >
               <tr>
              <th>S.No</th>
@@ -78,7 +78,7 @@ function getCountries() {
             <th>Critical</th>
             </tr>`
                          for(let i = 0; i <response.length; i++) {
-                            deathsToday+= response[i].todayDeaths; 
+                            //deathsToday+= response[i].todayDeaths; 
                             sectionsContent += `<tr>
                              <td>${i+1}</td>
                             <td>${response[i].country}</td>
@@ -93,7 +93,7 @@ function getCountries() {
                     }
                  let content= sectionsContent+`</table>` 
                  document.querySelector('#getCountries').innerHTML = content
-                 document.querySelector('#getDeathsToday').innerHTML = deathsToday
+                 document.querySelector('#getDeathsToday').innerHTML = response[0].todayDeaths;
     },
     error: function (xhr) {
       alert('Oops!!! Something went terribly wrong. We have sent out a higly trained team of monkeys to handle this situation.')
