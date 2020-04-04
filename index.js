@@ -8,6 +8,7 @@ function getStats() {
     data: {},
     success: function (response) {
                  var dateUpdated= new Date(response.updated).toUTCString(); 
+                 document.querySelector('#statsOverview').innerHTML= 'Global';
                  document.querySelector('#confirmed').innerHTML = response.cases;
                  document.querySelector('#recovered').innerHTML = response.recovered;
                  document.querySelector('#deaths').innerHTML = response.deaths;
