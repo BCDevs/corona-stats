@@ -28,31 +28,15 @@ function searchByCountry() {
          if(typeof response.message != 'undefined') {
            document.querySelector('#searchResponse').innerHTML=response.message;
             return;
-          }
-        let sectionsContent = `<table class="table table-striped table-bordered" >
-              <tr>
-            <th>Country</th>
-            <th>Cases</th>
-            <th>Deaths</th>
-            <th>Recovered</th> 
-            <th>Today Reported</th>
-            <th>Today Deaths</th>
-            <th>Active</th>
-            <th>Critical</th>
-            </tr>
-            <tr>
-            <td>${response.country}</td>
-            <td>${response.cases}</td>
-            <td>${response.deaths}</td>
-            <td>${response.recovered}</td>
-            <td>${response.todayCases}</td>
-            <td>${response.todayDeaths}</td>
-            <td>${response.active}</td>
-            <td>${response.critical}</td>
-            </tr>
-            </table>`
-          document.querySelector('#searchResponse').innerHTML = sectionsContent;
-     },
+               }
+              var dateUpdated= new Date(response.updated).toUTCString();
+              document.querySelector('#statsOverview').innerHTML= response.country;
+              document.querySelector('#confirmed').innerHTML = response.cases;
+              document.querySelector('#recovered').innerHTML = response.recovered;
+              document.querySelector('#deaths').innerHTML = response.deaths;
+              document.querySelector('#getDeathsToday').innerHTML= response.deathsToday
+              document.querySelector('#updatedAt').innerHTML = `Last Updated At ${dateUpdated}`;
+           },
     error: function (xhr) {
       alert('Oops!!! No search Results or we might messed up!!')
     }
