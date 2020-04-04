@@ -34,7 +34,7 @@ function searchByCountry() {
               document.querySelector('#confirmed').innerHTML = response.cases;
               document.querySelector('#recovered').innerHTML = response.recovered;
               document.querySelector('#deaths').innerHTML = response.deaths;
-              document.querySelector('#getDeathsToday').innerHTML= response.deathsToday
+              document.querySelector('#getDeathsToday').innerHTML= response.todayDeaths
               document.querySelector('#updatedAt').innerHTML = `Last Updated At ${dateUpdated}`;
            },
     error: function (xhr) {
