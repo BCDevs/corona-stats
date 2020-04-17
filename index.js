@@ -3,7 +3,7 @@ $('#getCountries').click();
 
 function getStats() {
   $.ajax({
-    url:'https://corona.lmao.ninja/all',
+    url:'https://corona.lmao.ninja/v2/all',
     type: "get",
     data: {},
     success: function (response) {
@@ -22,7 +22,7 @@ function getStats() {
 function searchByCountry() {
   let query = document.getElementById("searchQuery").value;
   $.ajax({
-    url:`https://corona.lmao.ninja/countries/${query}`,
+    url:`https://corona.lmao.ninja/v2/countries/${query}`,
     type: "get",
     data: {},
     success: function (response) {
@@ -45,7 +45,7 @@ function searchByCountry() {
 }
 function getCountries() {
   $.ajax({
-    url:'https://corona.lmao.ninja/countries',
+    url:'https://corona.lmao.ninja/v2/countries',
     type: "get",
     data: {},
     success: function (response) {
