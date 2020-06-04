@@ -1,6 +1,32 @@
+function randomNotification(message) {
+       var options = {
+        body: message,
+        icon: '64.png'
+    }
+    var notif = new Notification('Stay Home.. Stay Safe..', options);
+}
+window.onload = function() {
+  Notification.requestPermission(result => {
+  if (result === 'granted') {
+   randomNotification('This is Sweety, Your Health Assistant Made with 💖 by Salman.');
+ }
+});
 $('#getStats').click();
 $('#getCountries').click();
-
+setTimeout(getStatsNotification, 10000);
+function getStatsNotification() {
+  $.ajax({
+    url:'https://corona.lmao.ninja/v2/all',
+    type: "get",
+    data: {},
+    success: function (response) {
+         randomNotification(`Today Reported Cases: ${response.cases}, Deaths Today: ${response.deaths}.`);
+    },
+    error: function (xhr) {
+      alert('Oops!!! Something went terribly wrong. We have sent out a higly trained team of monkeys to handle this situation.')
+    }
+  });
+}
 function getStats() {
   $.ajax({
     url:'https://corona.lmao.ninja/v2/all',
