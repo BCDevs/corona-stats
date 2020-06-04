@@ -1,6 +1,36 @@
+function randomNotification(message) {
+       var options = {
+        body: message,
+        icon: '64.png'
+    }
+    var notif = new Notification('Stay Home. Stay Safe.', options);
+}
+window.onload = function() {
+  Notification.requestPermission(result => {
+  if (result === 'granted') {
+   randomNotification('This is Sweety, Your Health Assistant Made with 💖 by Salman.');
+ }
+});
+}
 $('#getStats').click();
 $('#getCountries').click();
-
+var date = new Date(); // Create Date object for a reference point
+if(date.getHours() === 8){
+getStatsNotification()
+};
+function getStatsNotification() {
+  $.ajax({
+    url:'https://corona.lmao.ninja/v2/countries/india',
+    type: "get",
+    data: {},
+    success: function (response) {
+         randomNotification(`India: Today Reported Cases: ${response.todayCases}, Deaths Today: ${response.todayDeaths}.`);
+    },
+    error: function (xhr) {
+      alert('Oops!!! Something went terribly wrong. We have sent out a higly trained team of monkeys to handle this situation.')
+    }
+  });
+}
 function getStats() {
   $.ajax({
     url:'https://corona.lmao.ninja/v2/all',
