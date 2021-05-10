@@ -41,6 +41,7 @@ function getStats() {
                  document.querySelector('#statsOverview').innerHTML= 'Global';
                  document.querySelector('#confirmed').innerHTML = response.cases;
                  document.querySelector('#recovered').innerHTML = response.recovered;
+                 document.querySelector('#todayReported').innerHTML = response.todayCases;
                  document.querySelector('#deaths').innerHTML = response.deaths;
                  document.querySelector('#updatedAt').innerHTML = `Last Updated At ${dateUpdated}`;
     },
@@ -64,6 +65,7 @@ function searchByCountry() {
               document.querySelector('#statsOverview').innerHTML= response.country;
               document.querySelector('#confirmed').innerHTML = response.cases;
               document.querySelector('#recovered').innerHTML = response.recovered;
+              document.querySelector('#todayReported').innerHTML = response.todayCases;
               document.querySelector('#deaths').innerHTML = response.deaths;
               document.querySelector('#getDeathsToday').innerHTML= response.todayDeaths
               document.querySelector('#updatedAt').innerHTML = `Last Updated At ${dateUpdated}`;
