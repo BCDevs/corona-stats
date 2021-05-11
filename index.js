@@ -52,7 +52,11 @@ function getCountries() {
     url: 'https://corona.lmao.ninja/v2/countries',
     type: "get",
     data: {},
-    success: function (response) {
+    success: function (res) {
+      // sort by most cases overall
+      const response = res.sort((a, b) => {
+        return b.cases - a.cases
+      })
       let sectionsContent = `<table class="table table-striped table-bordered" >
               <tr>
              <th>S.No</th>
