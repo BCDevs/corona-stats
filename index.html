@@ -18,11 +18,12 @@
 https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"> -->
 <script src="index.js" defer></script>
 <style>
-  body {
-    overflow:auto;
-    margin: 0;
-    box-sizing:border-box;
-   }
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    margin:0; /*Add this*/
+}
  table tr th {
    position: sticky;
    top:-15px;
